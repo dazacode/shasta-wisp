@@ -19,8 +19,7 @@
       "require": "./dist/wisp-full.cjs"
     },
     "./client": {
-      "import": "./src/entrypoints/client.mjs",
-      "require": "./dist/wisp-client.cjs"
+      "import": "./src/entrypoints/client.mjs"
     },
     "./server": {
       "import": "./src/entrypoints/server.mjs",
@@ -28,6 +27,9 @@
     },
     "./browser": {
       "import": "./src/entrypoints/browser.mjs"
+    },
+    "./packets": {
+      "import": "./src/packet.mjs"
     },
     "./package.json": "./package.json"
   },
