@@ -1,4 +1,4 @@
-// Entry point: `@mercuryworkshop/wisp-js/browser`
+// Entry point: `@dazacode/shasta-wisp/browser`
 //
 // The browser side of the package: a complete Wisp server that runs in the page and opens real
 // sockets through the Isolated Web App Direct Sockets API. See ../server/browser/index.mjs.

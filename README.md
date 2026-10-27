@@ -11,7 +11,7 @@ This is an implementation of a [Wisp](https://github.com/mercuryWorkshop/wisp-pr
 
 ### Library Entrypoints:
 - `@mercuryworkshop/wisp-js/client` - Only contains the client code.
-- `@mercuryworkshop/wisp-js/server` - Contains the server code, and the logging module.
+- `@dazacode/shasta-wisp/server` - Contains the server code, and the logging module.
 - `@mercuryworkshop/wisp-js` - Contains the server, client, and logging code.
 
 All of these entrypoints support being imported as either a CommonJS or ES6 module.
@@ -134,7 +134,7 @@ let ws = new wisp.WispWebSocket(ws_url + "cloudflare.com:80", null, {wisp_versio
 ### Importing the Server Library:
 To use the library as an ES6 module, either in Node or using a bundler for the browser, include the following import:
 ```js
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@dazacode/shasta-wisp/server";
 ```
 
 To use it in Node with CommonJS:
@@ -147,7 +147,7 @@ This is designed to be a drop-in replacement for [wisp-server-node](https://gith
 ### Basic Example:
 This example uses the `node:http` module as a basic web server. It accepts new Wisp connections from incoming websockets.
 ```js
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@dazacode/shasta-wisp/server";
 import http from "node:http";
 
 const server = http.createServer((req, res) => {
@@ -168,7 +168,7 @@ server.listen(5001, "127.0.0.1");
 
 ### Example With Express:
 ```js
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@dazacode/shasta-wisp/server";
 import express from "express";
 import morgan from "morgan";
 
@@ -196,7 +196,7 @@ By default, all info messages are shown. You can change this by importing `loggi
 - `logging.NONE`
 
 ```js
-import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp, logging } from "@dazacode/shasta-wisp/server";
 
 logging.set_level(logging.DEBUG);
 ```
@@ -266,7 +266,7 @@ API — and then `libcurl.js`/`epoxy` talk to it over an in-process `MessageChan
 websocket to a server.
 
 ```js
-import { createLocalWispServer, hasDirectSockets } from "@mercuryworkshop/wisp-js/browser";
+import { createLocalWispServer, hasDirectSockets } from "@dazacode/shasta-wisp/browser";
 
 if (hasDirectSockets()) {
   const server = createLocalWispServer();     // hardened defaults applied

@@ -60,7 +60,7 @@ behaviour.
 | `src/server/browser/tcp.mjs` | `BrowserTCPSocket`: `NodeTCPSocket` surface over the Direct Sockets `TCPSocket` |
 | `src/server/browser/udp.mjs` | `BrowserUDPSocket`: same over `UDPSocket` |
 | `src/server/browser/dns.mjs` | DNS-over-HTTPS resolver for the SSRF filter, with a TTL cache and endpoint fallback |
-| `src/entrypoints/browser.mjs` | `@mercuryworkshop/wisp-js/browser` |
+| `src/entrypoints/browser.mjs` | `@dazacode/shasta-wisp/browser` |
 | `test/browser.test.mjs` | drives the whole browser server on Node with a fake `TCPSocket` and a hand-written v2 client, over the real packet codec |
 
 `assert_on_node()` in `net.mjs`/`http.mjs` is deliberately **not** touched: the browser path builds
@@ -88,10 +88,10 @@ is what makes this cheap to maintain.
 
 ```js
 // a hosted relay (unchanged from upstream)
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@dazacode/shasta-wisp/server";
 
 // the in-page relay (Isolated Web App; needs the direct-sockets permission)
-import { createLocalWispServer, hasDirectSockets } from "@mercuryworkshop/wisp-js/browser";
+import { createLocalWispServer, hasDirectSockets } from "@dazacode/shasta-wisp/browser";
 const server = createLocalWispServer();
 server.installWebSocket();   // libcurl.js / epoxy now reach wss://local/wisp/ with no relay
 ```

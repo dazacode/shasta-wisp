@@ -1,5 +1,5 @@
 {
-  "name": "@mercuryworkshop/wisp-js",
+  "name": "@dazacode/shasta-wisp",
   "version": "0.5.1",
   "description": "A client and server for the Wisp protocol, written in Javascript",
   "repository": {
