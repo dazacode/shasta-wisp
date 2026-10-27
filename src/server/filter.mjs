@@ -1,6 +1,6 @@
 import { close_reasons, stream_types } from "../packet.mjs";
 import { options } from "./options.mjs";
-import * as net from "./net.mjs";
+import { resolve_host } from "./resolver.mjs";
 
 import ipaddr from "ipaddr.js";
 
@@ -87,7 +87,7 @@ export async function is_stream_allowed(connection, type, hostname, port) {
   }
   else {
     try { //look up the ip to make sure that the resolved address is allowed
-      ip_str = await net.lookup_ip(hostname);
+      ip_str = await resolve_host(hostname);
     }
     catch {}
   }
