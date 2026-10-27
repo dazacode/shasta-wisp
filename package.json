@@ -25,12 +25,17 @@
     "./server": {
       "import": "./src/entrypoints/server.mjs",
       "require": "./dist/wisp-server.cjs"
-    }
+    },
+    "./browser": {
+      "import": "./src/entrypoints/browser.mjs"
+    },
+    "./package.json": "./package.json"
   },
   "browser": {
     ".": "./src/index.mjs",
     "./client": "./src/entrypoints/client.mjs",
     "./server": "./src/entrypoints/server.mjs",
+    "./browser": "./src/entrypoints/browser.mjs",
     "./src/compat.mjs": "./src/compat_browser.mjs"
   },
   "files": [
@@ -41,6 +46,7 @@
     "build": "webpack",
     "build:prod": "webpack --mode=production",
     "dev": "webpack --watch",
+    "test": "node --test test/",
     "server_cli": "node ./src/bin/server_cli.mjs"
   },
   "bin": {

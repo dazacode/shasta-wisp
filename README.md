@@ -257,3 +257,24 @@ This project is licensed under the [GNU LGPL v3](https://www.gnu.org/licenses/lg
 > This license is mainly applied to libraries. You may copy, distribute and modify the software provided that modifications are described and licensed for free under LGPL. Derivatives works (including modifications or anything statically linked to the library) can only be redistributed under LGPL, but applications that use the library don't have to be.
 > 
 > \- From [tldrlegal.com](https://www.tldrlegal.com/license/gnu-lesser-general-public-license-v3-lgpl-3)
+
+## Browser / on-device server (Shasta fork)
+
+This fork adds a server that runs *in the page*: no relay host. It needs a browser with real
+sockets — a Chromium **Isolated Web App** using the [Direct Sockets](https://developer.chrome.com/docs/iwa/direct-sockets)
+API — and then `libcurl.js`/`epoxy` talk to it over an in-process `MessageChannel` instead of a
+websocket to a server.
+
+```js
+import { createLocalWispServer, hasDirectSockets } from "@mercuryworkshop/wisp-js/browser";
+
+if (hasDirectSockets()) {
+  const server = createLocalWispServer();     // hardened defaults applied
+  server.installWebSocket();                  // make `new WebSocket("wss://local/wisp/")` local
+  // point the transport's wisp url at server.url
+}
+```
+
+The wire format is untouched: the same `ServerConnection`, the same v1/v2 handshake, the same
+packets. Only the socket underneath is different. See [`FORK.md`](./FORK.md) for the full list of
+differences from upstream, and `test/browser.test.mjs` for how it is verified on Node.
