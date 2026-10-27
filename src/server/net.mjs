@@ -27,14 +27,17 @@ function resolve6(hostname) {
   return resolver.resolve6(hostname);
 }
 async function resolve_with_fallback(resolve_first, resolve_after, hostname) {
-  let result; 
+  let result;
   try {
-    result = await resolve_first(hostname)[0];
+    // `resolve_first(hostname)` returns a promise of an array; the `[0]` must be applied to the
+    // awaited value, not to the promise. Upstream 0.5.0/0.5.1 awaited `promise[0]` (= undefined),
+    // so every lookup threw "address not resolved" and `dns_method: "resolve"` was unusable.
+    result = (await resolve_first(hostname))[0];
     if (result == null)
       throw Error("address not resolved");
   }
   catch {
-    result = await resolve_after(hostname)[0];
+    result = (await resolve_after(hostname))[0];
     if (result == null)
       throw Error("address not resolved");
   }
